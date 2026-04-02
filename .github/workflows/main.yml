@@ -9,8 +9,8 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: NuGet/setup-nuget@v1.0.5
+      - uses: actions/checkout@v5
+      - uses: NuGet/setup-nuget@v3.0.0
       - name: Pack nuget
         run: nuget pack package -OutputFileNamesWithoutVersion -OutputDirectory build -Properties "git=https://github.com/${{ github.repository }}.git;name=${{ github.event.repository.name }};author=${{ github.repository_owner }};description=${{ github.event.repository.description }}"
       - name: Publish nuget
