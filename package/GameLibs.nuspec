@@ -2,9 +2,10 @@
 <package >
   <metadata>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <readme>docs\README.md</readme>
 
     <!-- Version of your nuget package. Should reflect the game version where the libs come from. -->
-    <version>2026.01.14</version>
+    <version>2026.01.14.1</version>
 
     <!-- The GitHub workflow will automatically populate these. -->
     <id>$name$</id>
@@ -13,4 +14,7 @@
     <description>$description$</description>
     <repository type="git" url="$git$" />
   </metadata>
+  <files>
+    <file src="..\README.md" target="docs\"/>
+  </files>
 </package>

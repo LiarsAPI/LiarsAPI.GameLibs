@@ -1,6 +1,8 @@
-# Unity Game Libs Nuget Creator
+# LiarsAPI.GameLibs
 
-Creates nugets with stripped and publicized libraries for Unity game modding.
+![Nuget](https://img.shields.io/nuget/v/LiarsAPI.GameLibs)
+
+Creates nugets with stripped and publicized libraries for Liar's Bar.
 
 If the game gets updated, this package needs to get updated too.
 
