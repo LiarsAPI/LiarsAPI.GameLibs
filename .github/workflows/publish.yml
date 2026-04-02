@@ -27,4 +27,5 @@ jobs:
           nuget push "build/${{ github.event.repository.name }}.nupkg" -ApiKey ${{ secrets.NUGET_KEY }} -Source https://api.nuget.org/v3/index.json
       - name: Publish to GitHub Packages
         run: |
-          nuget push "build/${{ github.event.repository.name }}.nupkg" -ApiKey ${{ secrets.GITHUB_TOKEN }} -Source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+          nuget sources add -Name "GitHub" -Source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" -UserName "${{ github.repository_owner }}" -Password "${{ secrets.GITHUB_TOKEN }}"
+          nuget push "build/${{ github.event.repository.name }}.nupkg" -Source "GitHub"
