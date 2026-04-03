@@ -1,4 +1,5 @@
-@echo off 
+@echo off
+setlocal enabledelayedexpansion
 
 @REM Add all the assemblies you want to publicize in this list
 set toPublicize=Assembly-CSharp.dll Assembly-CSharp-firstpass.dll
@@ -58,5 +59,19 @@ if "%toInclude%"=="" (
 
   xcopy "%managedPath%\%%a" "%outPath%\%%a" /y /v
 ))
+
+@REM Delete any files in the output directory that are not in toInclude.
+if not "%toInclude%"=="" (
+  for %%f in ("%outPath%\*.dll") do (
+    set found=0
+    for %%a in (%toInclude%) do (
+      if /i "%%~nxf"=="%%a" set found=1
+    )
+    if !found!==0 (
+      echo Deleting unlisted file: %%~nxf
+      del "%%f"
+    )
+  )
+)
 
 pause
