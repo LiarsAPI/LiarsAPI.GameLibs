@@ -6,6 +6,23 @@ set toPublicize=Assembly-CSharp.dll Assembly-CSharp-firstpass.dll
 @REM Add all the assemblies you want to copy as-is to the package in this list
 set dontTouch=
 
+@REM Add all the assemblies you want to include in the package in this list, if this list is empty, all assemblies will be included
+set toInclude=^
+  Assembly-CSharp.dll ^
+  Assembly-CSharp-firstpass.dll ^
+  com.rlabrecque.steamworks.net.dll ^
+  FizzySteamworks.dll ^
+  kcp2k.dll ^
+  Mirror.dll ^
+  Mirror.Transports.dll ^
+  Mirror.Components.dll ^
+  Mirror.Authenticators.dll ^
+  Newtonsoft.Json.dll ^
+  Unity.Addressables.dll ^
+  Unity.ResourceManager.dll ^
+  Unity.TextMeshPro.dll ^
+  UnityEngine.UI.dll
+
 set exePath=%1
 echo exePath: %exePath% 
 
@@ -17,8 +34,16 @@ echo managedPath: %managedPath%
 
 set outPath=%~dp0\package\lib
 
-@REM Strip all assembiles, but keep them private.
-%~dp0\tools\NStrip.exe "%managedPath%" -o %outPath%
+@REM Strip assemblies - if toInclude is set, only process listed assemblies; otherwise process all.
+if "%toInclude%"=="" (
+  %~dp0\tools\NStrip.exe "%managedPath%" -o %outPath%
+) else (
+  (for %%a in (%toInclude%) do (
+    echo a: %%a
+
+    %~dp0\tools\NStrip.exe "%managedPath%\%%a" -o "%outPath%\%%a"
+  ))
+)
 
 @REM Strip and publicize assemblies from toPublicize.
 (for %%a in (%toPublicize%) do (

@@ -5,7 +5,7 @@
     <readme>docs\README.md</readme>
 
     <!-- Version of your nuget package. Should reflect the game version where the libs come from. -->
-    <version>2026.01.14.4</version>
+    <version>2026.01.14.5</version>
 
     <!-- The GitHub workflow will automatically populate these. -->
     <id>$name$</id>
