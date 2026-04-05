@@ -19,6 +19,7 @@ set toInclude=^
   Mirror.Components.dll ^
   Mirror.Authenticators.dll ^
   Newtonsoft.Json.dll ^
+  Telepathy.dll ^
   Unity.Addressables.dll ^
   Unity.ResourceManager.dll ^
   Unity.TextMeshPro.dll ^
